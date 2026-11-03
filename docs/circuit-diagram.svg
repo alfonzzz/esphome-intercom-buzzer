@@ -27,8 +27,8 @@
   <path class="wire power33" d="M255 252 H330"/>
   <path class="wire power5" d="M255 300 H330"/>
   <path class="wire power5" d="M580 300 H710 V252 H760"/>
-  <path class="wire ground" d="M255 348 H300 V570 H760"/>
-  <path class="wire ground" d="M580 348 H620 V570"/>
+  <path class="wire ground" d="M255 348 H330"/>
+  <path class="wire ground" d="M580 348 H620 V570 H760 V348"/>
   <path class="wire signal" d="M255 405 H330"/>
   <path class="wire signal" d="M580 405 H760"/>
   <path class="wire contact" d="M1015 365 H1080 V330 H1115"/>
@@ -53,6 +53,7 @@
   <text x="347" y="353" class="pin">GND</text>
   <text x="347" y="410" class="pin">LV1</text>
   <text x="547" y="305" text-anchor="end" class="pin">HV</text>
+  <text x="547" y="353" text-anchor="end" class="pin">GND</text>
   <text x="547" y="410" text-anchor="end" class="pin">HV1</text>
   <circle cx="330" cy="252" r="6" fill="#175cd3"/><circle cx="330" cy="300" r="6" fill="#b42318"/><circle cx="330" cy="348" r="6" fill="#475467"/><circle cx="330" cy="405" r="6" fill="#027a48"/>
   <circle cx="580" cy="300" r="6" fill="#b42318"/><circle cx="580" cy="348" r="6" fill="#475467"/><circle cx="580" cy="405" r="6" fill="#027a48"/>
@@ -65,11 +66,10 @@
   <text x="778" y="353" class="pin">GND</text>
   <text x="778" y="410" class="pin">IN</text>
   <circle cx="760" cy="252" r="6" fill="#b42318"/><circle cx="760" cy="348" r="6" fill="#475467"/><circle cx="760" cy="405" r="6" fill="#027a48"/>
-  <line x1="835" y1="330" x2="935" y2="330" stroke="#7a5af8" stroke-width="4"/>
-  <line x1="935" y1="330" x2="955" y2="350" stroke="#7a5af8" stroke-width="4"/>
-  <line x1="955" y1="350" x2="955" y2="402" stroke="#7a5af8" stroke-width="4"/>
-  <line x1="955" y1="415" x2="985" y2="415" stroke="#7a5af8" stroke-width="4"/>
-  <text x="835" y="320" class="pin">COM</text><text x="985" y="405" text-anchor="end" class="pin">NO</text>
+  <line x1="1015" y1="365" x2="955" y2="365" stroke="#7a5af8" stroke-width="4"/>
+  <line x1="955" y1="365" x2="900" y2="405" stroke="#7a5af8" stroke-width="4"/>
+  <line x1="900" y1="415" x2="1015" y2="415" stroke="#7a5af8" stroke-width="4"/>
+  <text x="1000" y="355" text-anchor="end" class="pin">COM</text><text x="1000" y="405" text-anchor="end" class="pin">NO</text>
   <circle cx="1015" cy="365" r="6" fill="#7a5af8"/><circle cx="1015" cy="415" r="6" fill="#7a5af8"/>
 
   <!-- Intercom -->
