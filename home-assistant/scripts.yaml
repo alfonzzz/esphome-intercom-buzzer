@@ -1,0 +1,13 @@
+intercom_door_opener:
+  alias: Intercom Door Opener
+  description: Momentarily opens the intercom relay for 500 ms.
+  mode: restart
+  sequence:
+    - action: switch.turn_on
+      target:
+        entity_id: switch.entrance_intercom_buzzer_intercom_buzzer
+    - delay:
+        milliseconds: 500
+    - action: switch.turn_off
+      target:
+        entity_id: switch.entrance_intercom_buzzer_intercom_buzzer

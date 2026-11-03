@@ -1,0 +1,19 @@
+- id: oref_alert_home_buzzer
+  alias: Oref Alert — Home buzzer
+  description: >-
+    Sounds for one minute only for the configured Home-area Oref Alert binary
+    sensor. Pre-alerts and all other HA zones are excluded by this sensor.
+  mode: restart
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.oref_alert
+      to: "on"
+  condition: []
+  action:
+    - action: switch.turn_on
+      target:
+        entity_id: switch.entrance_intercom_buzzer_intercom_buzzer
+    - delay: "00:01:00"
+    - action: switch.turn_off
+      target:
+        entity_id: switch.entrance_intercom_buzzer_intercom_buzzer

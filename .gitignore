@@ -1,0 +1,4 @@
+# Never commit site-specific ESPHome secrets
+esphome/secrets.yaml
+.esphome/
+.build/

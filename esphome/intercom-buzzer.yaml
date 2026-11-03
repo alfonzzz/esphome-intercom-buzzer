@@ -1,0 +1,61 @@
+# ESP32 intercom relay: HA manages timed door opening and Oref Alert buzzer logic.
+esphome:
+  name: intercom-buzzer
+  friendly_name: Intercom Buzzer
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "Intercom Buzzer Fallback"
+    password: !secret fallback_ap_password
+
+captive_portal:
+
+globals:
+  - id: max_on_seconds
+    type: int
+    restore_value: no
+    initial_value: '60'
+
+script:
+  # Hardware failsafe: turn off even if HA dies mid-alert.
+  - id: auto_off
+    mode: restart
+    then:
+      - delay: !lambda 'return id(max_on_seconds) * 1000;'
+      - switch.turn_off: buzzer
+
+switch:
+  - platform: gpio
+    pin: GPIO26
+    id: relay
+    restore_mode: ALWAYS_OFF
+    internal: true
+    inverted: true  # Change if the relay board is active-high.
+
+  - platform: template
+    name: Intercom Buzzer
+    id: buzzer
+    optimistic: true
+    restore_mode: ALWAYS_OFF
+    turn_on_action:
+      - switch.turn_on: relay
+      - script.execute: auto_off
+    turn_off_action:
+      - script.stop: auto_off
+      - switch.turn_off: relay

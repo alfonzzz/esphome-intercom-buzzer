@@ -1,0 +1,25 @@
+# Add these tiles to a Lovelace dashboard. Entity IDs may differ in your setup.
+- type: tile
+  entity: switch.entrance_intercom_buzzer_intercom_buzzer
+  name: Intercom Buzzer
+  icon: mdi:bell-ring
+  features:
+    - type: toggle
+
+- type: tile
+  entity: script.intercom_door_opener
+  name: Door Opener
+  icon: mdi:door-open
+  tap_action:
+    action: perform-action
+    perform_action: script.turn_on
+    target:
+      entity_id: script.intercom_door_opener
+
+- type: tile
+  entity: binary_sensor.oref_alert
+  name: Oref Alert · Home
+  icon: mdi:shield-alert-outline
+  state_content:
+    - state
+    - last-changed
