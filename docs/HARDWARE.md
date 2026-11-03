@@ -16,7 +16,7 @@ Home Assistant provides the two-second door-release action and alert automation.
 | --- | ---: | --- |
 | ESP32 development board | 1 | An ESP32-WROOM-32 / NodeMCU-32S-style board is suitable. |
 | 5 V single-channel relay module | 1 | Select an isolated module appropriate for the intercom's dry-contact circuit. |
-| 3.3 V ↔ 5 V logic-level shifter | 1 | A four-channel bidirectional module was used in this reference build. |
+| 3.3 V ↔ 5 V logic-level shifter | 1 | Raises the ESP32's 3.3 V GPIO control signal to the relay module's 5 V input level. A four-channel bidirectional module was used in this reference build. |
 | 5 V USB power supply and cable | 1 | Powers the ESP32 and relay module. |
 | Jumper wires and insulated connectors | as needed | Match the headers/connectors on your boards. |
 | Enclosure and strain relief | recommended | Keep low-voltage wiring secure and protected. |
@@ -26,6 +26,8 @@ Home Assistant provides the two-second door-release action and alert automation.
 ![Reference ESP32, level-shifter, relay, and intercom wiring](circuit-diagram.svg)
 
 The current ESPHome configuration uses **GPIO26**. It treats the relay module as active-low (`inverted: true`); confirm that behavior with your own relay before connecting the intercom.
+
+> **Why the level shifter is used:** ESP32 GPIO pins output **3.3 V logic**, while this relay module is powered at 5 V and its `IN` input is driven as a 5 V logic signal. The shifter raises GPIO26 from 3.3 V (`LV1`) to 5 V (`HV1`) so the relay has a reliable control level. An ESP32 board having two 5 V/VIN pins would **not** remove this need: those pins distribute 5 V power; they do not make the ESP32's GPIO output 5 V. You can omit the shifter only if your specific relay module's datasheet explicitly guarantees reliable triggering from a 3.3 V ESP32 GPIO at its chosen supply voltage, and you verify that behavior safely before connecting the intercom.
 
 | From | Pin | To | Pin | Purpose |
 | --- | --- | --- | --- | --- |
