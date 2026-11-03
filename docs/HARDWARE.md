@@ -40,6 +40,22 @@ The current ESPHome configuration uses **GPIO26**. It treats the relay module as
 
 Do **not** connect the ESP32's 5 V or ground directly to the intercom unlock terminals. Those terminals should connect only to the relay's `COM` and `NO` contacts unless your intercom documentation explicitly says otherwise.
 
+## Reference photos
+
+These photographs show the reference build and its wire routing. They are visual aids only—follow the wiring table and confirm the terminals on your own equipment before making connections.
+
+### Installed enclosure overview
+
+![Installed intercom enclosure, including the existing intercom board and relay module](images/intercom-enclosure-overview.jpg)
+
+### Relay module wiring
+
+![Close-up of the relay module wiring and terminal labels](images/relay-module-wiring.jpg)
+
+### ESP32 and level-shifter wiring
+
+![ESP32 board with the logic-level shifter and color-coded wiring](images/esp32-level-shifter-wiring.jpg)
+
 ## Assembly and bring-up
 
 1. With all equipment unpowered, identify the two intercom terminals that close when the physical door-release button is pressed. Confirm this with the manufacturer documentation or a multimeter—never by trial on unknown wires.
