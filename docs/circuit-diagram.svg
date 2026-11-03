@@ -26,8 +26,11 @@
 
   <!-- connectors, behind all component boxes -->
   <path class="wire power33" d="M255 252 H330"/>
-  <path class="wire power5" d="M255 300 H710 V252 H760"/>
-  <path class="wire ground" d="M255 348 H620 V570 H760 V348"/>
+  <!-- VCC and relay GND branch from the ESP32-to-shifter runs, then route below the boards. -->
+  <path class="wire power5" d="M255 300 H330"/>
+  <path class="wire power5" d="M292 300 V540 H710 V252 H760"/>
+  <path class="wire ground" d="M255 348 H330"/>
+  <path class="wire ground" d="M310 348 V590 H730 V348 H760"/>
   <path class="wire signal" d="M255 405 H330"/>
   <path class="wire signal" d="M580 405 H760"/>
   <path class="wire com-contact" d="M1015 365 H1080 V330 H1115"/>
@@ -42,6 +45,8 @@
   <text x="225" y="353" class="pin">GND</text>
   <text x="225" y="410" class="pin">GPIO26</text>
   <circle cx="255" cy="252" r="6" fill="#175cd3"/><circle cx="255" cy="300" r="6" fill="#7a4a21"/><circle cx="255" cy="348" r="6" fill="#000000"/><circle cx="255" cy="405" r="6" fill="#d92d20"/>
+  <!-- Branch points feeding the relay supply, intentionally between ESP32 and shifter. -->
+  <circle cx="292" cy="300" r="5" fill="#7a4a21"/><circle cx="310" cy="348" r="5" fill="#000000"/>
 
   <!-- shifter -->
   <rect x="330" y="190" width="250" height="270" class="box" fill="#ecfdf3"/>
