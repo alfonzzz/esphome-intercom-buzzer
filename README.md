@@ -3,7 +3,7 @@
 A small ESP32/relay project that provides:
 
 - a **latching intercom buzzer switch** with a hardware-side auto-off failsafe;
-- a **500 ms Home Assistant door-opener button** built from that switch;
+- a **two-second Home Assistant door-opener button** built from that switch;
 - an **Oref Alert** automation that sounds the buzzer for **one minute** only for
   the configured home area; and
 - Lovelace tile examples for all three controls/statuses.
@@ -11,7 +11,7 @@ A small ESP32/relay project that provides:
 ## What it deliberately does not do
 
 The ESPHome firmware does **not** expose a separate momentary door-opener
-button. Home Assistant owns the timed door-opening action, while ESPHome owns
+button. Home Assistant owns the two-second timed door-opening action, while ESPHome owns
 the relay and its 60-second safety cutoff.
 
 ## Setup
@@ -25,7 +25,7 @@ the relay and its 60-second safety cutoff.
 4. Add the script in `home-assistant/scripts.yaml` and the automation in
    `home-assistant/automations.yaml`, changing entity IDs if yours differ.
 5. Add the matching Lovelace tiles from `dashboard/family-dashboard-snippets.yaml`.
-6. Test the door opener with a short pulse. Test the alert automation with a
+6. Test the door opener with its configured two-second pulse. Test the alert automation with a
    temporary five-second delay, then restore its one-minute production delay.
 
 ## Alert safety model

@@ -16,10 +16,14 @@
     target:
       entity_id: script.intercom_door_opener
 
-- type: tile
-  entity: binary_sensor.oref_alert
-  name: Oref Alert · Home
-  icon: mdi:shield-alert-outline
-  state_content:
-    - state
-    - last-changed
+# The Oref integration supplies this custom map card. It renders active alerts,
+# pre-alerts, recent clears, and the home area.
+- type: custom:oref-alert-map
+  title: Oref Alert · Home
+  auto_fit: false
+  show_home: true
+  hebrew_basemap: true
+  show_pre_alert: true
+  show_end: true
+  show_location: true
+  aspect_ratio: 50%
