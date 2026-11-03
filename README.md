@@ -8,12 +8,6 @@ A small ESP32/relay project that provides:
   the configured home area; and
 - Lovelace tile examples for all three controls/statuses.
 
-## What it deliberately does not do
-
-The ESPHome firmware does **not** expose a separate momentary door-opener
-button. Home Assistant owns the two-second timed door-opening action, while ESPHome owns
-the relay and its 60-second safety cutoff.
-
 ## Setup
 
 1. Copy `esphome/secrets.yaml.example` to `esphome/secrets.yaml`, populate it,
