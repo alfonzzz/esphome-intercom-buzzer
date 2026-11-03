@@ -23,6 +23,8 @@ Home Assistant provides the two-second door-release action and alert automation.
 
 ## Reference wiring
 
+![Reference ESP32, level-shifter, relay, and intercom wiring](circuit-diagram.svg)
+
 The current ESPHome configuration uses **GPIO26**. It treats the relay module as active-low (`inverted: true`); confirm that behavior with your own relay before connecting the intercom.
 
 | From | Pin | To | Pin | Purpose |
@@ -35,13 +37,6 @@ The current ESPHome configuration uses **GPIO26**. It treats the relay module as
 | ESP32 | `GPIO26` | level shifter | `LV1` | Control signal |
 | level shifter | `HV1` | relay module | `IN` | 5 V relay control signal |
 | relay module | `COM` + `NO` | intercom | unlock-contact pair | Isolated momentary closure |
-
-```text
-ESP32 GPIO26 ── LV1  logic-level shifter  HV1 ── relay IN
-ESP32 3V3    ── LV                           HV ── 5 V / relay VCC
-ESP32 GND    ── shifter GND ────────────────────── relay GND
-relay COM/NO ───────────────────────────────────── intercom unlock contacts
-```
 
 Do **not** connect the ESP32's 5 V or ground directly to the intercom unlock terminals. Those terminals should connect only to the relay's `COM` and `NO` contacts unless your intercom documentation explicitly says otherwise.
 

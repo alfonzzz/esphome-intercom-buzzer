@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+  <title id="title">ESP32 intercom relay wiring reference</title>
+  <desc id="desc">Reference wiring from an ESP32 through a 3.3 to 5 volt logic level shifter and a 5 volt relay to an intercom door-release dry contact.</desc>
+  <style>
+    text { font-family: Arial, sans-serif; fill: #17212b; }
+    .title { font-size: 28px; font-weight: 700; }
+    .subtitle { font-size: 15px; fill: #465463; }
+    .box { stroke: #34495e; stroke-width: 2; rx: 12; }
+    .head { font-size: 20px; font-weight: 700; }
+    .label { font-size: 16px; font-weight: 600; }
+    .note { font-size: 14px; fill: #465463; }
+    .pin { font-size: 14px; font-weight: 700; }
+    .wire { fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+    .power5 { stroke: #b42318; }
+    .power33 { stroke: #175cd3; }
+    .ground { stroke: #475467; }
+    .signal { stroke: #027a48; }
+    .contact { stroke: #7a5af8; }
+    .legend { font-size: 14px; }
+  </style>
+
+  <rect width="1200" height="780" fill="#ffffff"/>
+  <text x="60" y="55" class="title">ESP32 intercom relay — reference wiring</text>
+  <text x="60" y="83" class="subtitle">Use the repository ESPHome configuration for firmware. This diagram shows the low-voltage reference hardware only.</text>
+
+  <!-- connectors, behind all component boxes -->
+  <path class="wire power33" d="M255 252 H330"/>
+  <path class="wire power5" d="M255 300 H330"/>
+  <path class="wire power5" d="M580 300 H710 V252 H760"/>
+  <path class="wire ground" d="M255 348 H300 V570 H760"/>
+  <path class="wire ground" d="M580 348 H620 V570"/>
+  <path class="wire signal" d="M255 405 H330"/>
+  <path class="wire signal" d="M580 405 H760"/>
+  <path class="wire contact" d="M1015 365 H1080 V330 H1115"/>
+  <path class="wire contact" d="M1015 415 H1080 V455 H1115"/>
+
+  <!-- ESP32 -->
+  <rect x="60" y="190" width="195" height="270" class="box" fill="#eaf2ff"/>
+  <text x="157" y="230" text-anchor="middle" class="head">ESP32</text>
+  <text x="157" y="257" text-anchor="middle" class="note">development board</text>
+  <text x="225" y="257" class="pin">3V3</text>
+  <text x="225" y="305" class="pin">VIN / 5V</text>
+  <text x="225" y="353" class="pin">GND</text>
+  <text x="225" y="410" class="pin">GPIO26</text>
+  <circle cx="255" cy="252" r="6" fill="#175cd3"/><circle cx="255" cy="300" r="6" fill="#b42318"/><circle cx="255" cy="348" r="6" fill="#475467"/><circle cx="255" cy="405" r="6" fill="#027a48"/>
+
+  <!-- shifter -->
+  <rect x="330" y="190" width="250" height="270" class="box" fill="#ecfdf3"/>
+  <text x="455" y="230" text-anchor="middle" class="head">Logic-level shifter</text>
+  <text x="455" y="257" text-anchor="middle" class="note">3.3 V ↔ 5 V, channel 1</text>
+  <text x="347" y="257" class="pin">LV</text>
+  <text x="347" y="305" class="pin">HV</text>
+  <text x="347" y="353" class="pin">GND</text>
+  <text x="347" y="410" class="pin">LV1</text>
+  <text x="547" y="305" text-anchor="end" class="pin">HV</text>
+  <text x="547" y="410" text-anchor="end" class="pin">HV1</text>
+  <circle cx="330" cy="252" r="6" fill="#175cd3"/><circle cx="330" cy="300" r="6" fill="#b42318"/><circle cx="330" cy="348" r="6" fill="#475467"/><circle cx="330" cy="405" r="6" fill="#027a48"/>
+  <circle cx="580" cy="300" r="6" fill="#b42318"/><circle cx="580" cy="348" r="6" fill="#475467"/><circle cx="580" cy="405" r="6" fill="#027a48"/>
+
+  <!-- relay -->
+  <rect x="760" y="190" width="255" height="320" class="box" fill="#fff7ed"/>
+  <text x="887" y="230" text-anchor="middle" class="head">5 V relay module</text>
+  <text x="887" y="257" text-anchor="middle" class="note">isolated relay contact</text>
+  <text x="778" y="257" class="pin">VCC</text>
+  <text x="778" y="353" class="pin">GND</text>
+  <text x="778" y="410" class="pin">IN</text>
+  <circle cx="760" cy="252" r="6" fill="#b42318"/><circle cx="760" cy="348" r="6" fill="#475467"/><circle cx="760" cy="405" r="6" fill="#027a48"/>
+  <line x1="835" y1="330" x2="935" y2="330" stroke="#7a5af8" stroke-width="4"/>
+  <line x1="935" y1="330" x2="955" y2="350" stroke="#7a5af8" stroke-width="4"/>
+  <line x1="955" y1="350" x2="955" y2="402" stroke="#7a5af8" stroke-width="4"/>
+  <line x1="955" y1="415" x2="985" y2="415" stroke="#7a5af8" stroke-width="4"/>
+  <text x="835" y="320" class="pin">COM</text><text x="985" y="405" text-anchor="end" class="pin">NO</text>
+  <circle cx="1015" cy="365" r="6" fill="#7a5af8"/><circle cx="1015" cy="415" r="6" fill="#7a5af8"/>
+
+  <!-- Intercom -->
+  <rect x="1115" y="270" width="70" height="240" class="box" fill="#f4f3ff"/>
+  <text x="1150" y="310" text-anchor="middle" class="head" transform="rotate(90 1150 310)">Intercom</text>
+  <text x="1123" y="326" class="pin">unlock</text>
+  <text x="1123" y="452" class="pin">contacts</text>
+  <circle cx="1115" cy="330" r="6" fill="#7a5af8"/><circle cx="1115" cy="455" r="6" fill="#7a5af8"/>
+
+  <!-- ground bar -->
+  <text x="300" y="598" class="note">Common low-voltage ground: ESP32 ↔ shifter ↔ relay</text>
+  <text x="60" y="655" class="label">Important:</text>
+  <text x="145" y="655" class="note">Connect only relay COM/NO to the confirmed intercom unlock-contact pair. Do not connect ESP32 power or ground to those terminals.</text>
+
+  <!-- legend -->
+  <line x1="60" y1="710" x2="100" y2="710" class="wire power33"/><text x="112" y="715" class="legend">3.3 V</text>
+  <line x1="215" y1="710" x2="255" y2="710" class="wire power5"/><text x="267" y="715" class="legend">5 V</text>
+  <line x1="340" y1="710" x2="380" y2="710" class="wire ground"/><text x="392" y="715" class="legend">GND</text>
+  <line x1="465" y1="710" x2="505" y2="710" class="wire signal"/><text x="517" y="715" class="legend">control signal</text>
+  <line x1="670" y1="710" x2="710" y2="710" class="wire contact"/><text x="722" y="715" class="legend">isolated dry contact</text>
+</svg>
