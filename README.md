@@ -32,8 +32,8 @@ relay off after 60 seconds if Home Assistant becomes unavailable mid-run.
 
 ## Hardware
 
-See [docs/HARDWARE.md](docs/HARDWARE.md). This intentionally remains a
-placeholder for your site-specific wiring and intercom details.
+See [docs/HARDWARE.md](docs/HARDWARE.md) for a reference build, wiring,
+bring-up steps, safety notes, and troubleshooting guidance.
 
 ## Before publishing
 
