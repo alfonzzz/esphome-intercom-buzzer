@@ -4,8 +4,8 @@ A small ESP32/relay project that provides:
 
 - a **latching intercom buzzer switch** with a hardware-side auto-off failsafe;
 - a **two-second Home Assistant door-opener button** built from that switch;
-- an **Oref Alert** automation that sounds the buzzer for **one minute** only for
-  the configured home area; and
+- an **Oref Alert** automation that sounds **18 short pulses** (one second on,
+  four seconds off) over 90 seconds, only for the configured home area; and
 - Lovelace tile examples for all three controls/statuses.
 
 ## Setup
@@ -20,15 +20,17 @@ A small ESP32/relay project that provides:
    `home-assistant/automations.yaml`, changing entity IDs if yours differ.
 5. Add the matching Lovelace tiles from `dashboard/family-dashboard-snippets.yaml`.
 6. Test the door opener with its configured two-second pulse. Test the alert automation with a
-   temporary five-second delay, then restore its one-minute production delay.
+   temporary two-pulse cadence, then restore its 18-pulse production cadence.
 
 ## Alert safety model
 
 The Oref automation listens to `binary_sensor.oref_alert`, which represents
 only the area selected when configuring Oref Alert (not its all-areas sensor).
-A real alert turns the relay on, then it turns off after one minute. Pre-alerts
-and all-clear timing do not extend the sound. ESPHome independently shuts the
-relay off after 60 seconds if Home Assistant becomes unavailable mid-run.
+A real alert triggers 18 one-second relay pulses, separated by four seconds,
+over 90 seconds. Pre-alerts and all-clear timing do not extend the sound. This
+avoids holding the intercom's original buzzer/lock circuit energized continuously;
+ESPHome independently limits any individual continuous activation to 60 seconds
+if Home Assistant becomes unavailable mid-run.
 
 ## Hardware
 
